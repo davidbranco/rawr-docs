@@ -134,7 +134,7 @@ $multiplyThree = Lambda (
 <pre><code>use \Data\Num\Int;
 $oddNumTil100 = (new Collection (1, 3, '...', 100)) -> of ('Data.Num.Int')
 -> filter (function (Int $n) {
-  return $n -> greaterThan (50); # Filters all the integers greater than 100.
+  return $n -> greaterThan (50); # Filters all the integers greater than 50.
 })
 -> each (function (Int $n) {
   $n -> show () -> putStrLn (); # Outputs to screen each one of them.
