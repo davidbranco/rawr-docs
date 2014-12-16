@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html charset="utf-8">
+  <head>
+    <title>Rawr Docs - Index</title>
+    <meta name="charset" content="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/global.css" />
+    <link rel="stylesheet" type="text/css" href="./css/gh-fork-ribbon.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <!-- TOP RIGHT RIBBON: START COPYING HERE -->
+    <div class="github-fork-ribbon-wrapper right">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/haskellcamargo/rawr">Fork me on GitHub</a>
+        </div>
+    </div>
+    <!-- TOP RIGHT RIBBON: END COPYING HERE -->
+    <div id="menu-container" class="col-lg-12">
+      <div id="main-menu" class="col-lg-offset-2 col-lg-8">
+        <a href="./index.html">Home</a>
+        <a href="./getting-started.html">Getting Started</a>
+        <a href="./examples.html">Examples</a>
+        <a href="./download.html">Downloads</a>
+        <a href="http://github.com/haskellcamargo/rawr">Github</a>
+        <a href="./about.html">About</a>
+      </div>
+    </div>
+    <div id="main-content">
+      <div class="col-lg-2 col-lg-offset-2">
+        <div class="block">
+          <div class="block-title"><h4>Classes</h4></div>
+          <ul>
+            <li><a href="./types/Data.Bool.html">Bool</a></li>
+            <li><a href="./types/Data.Collection.html">Collection</a></li>
+            <li><a href="./types/Data.Error.html">Error</a></li>
+            <li><a href="./types/Data.File.html">File</a></li>
+            <li><a href="./types/Data.Func.html">Func</a></li>
+            <li><a href="./types/Data.Null">Null</a></li>
+            <li><a href="./types/Data.Num">Num</a>
+              <ul>
+                <li><a href="./types/Data.Num.Float">Float</a></li>
+                <li><a href="./types/Data.Num.Int">Int</a></li>
+              </ul>
+            </li>
+            <li><a href="./types/Data.Object">Object</a></li>
+            <li><a href="./types/Data.Str">Str</a></li>
+            <li><a href="./types/Data.Undefined">Undefined</a></li>
+            <li><a href="./types/Data.Void">Void</a></li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="block-title"><h4>Typeclasses</h4></div>
+          <ul>
+            <li><a href="#">Eq</a></li>
+            <li><a href="#">Integral</a></li>
+            <li><a href="#">Ord</a></li>
+            <li><a href="#">Read</a></li>
+            <li><a href="#">Show</a></li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="block-title"><h4>Modules</h4></div>
+          <ul>
+            <li><a href="#">Memoize.mod.php</a></li>
+            <li><a href="#">Monad.mod.php</a></li>
+          </ul>
+        </div>
+        <div class="block">
+          <div class="block-title"><h4>Libraries</h4></div>
+          <ul>
+            <li><a href="#">Apache.lib.php</a></li>
+            <li><a href="#">PHP.lib.php</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6 readable-content">
+        <h2>Welcome to Rawr</h2>
+        <h3>What is Rawr?</h3>
+        <p>Rawr is a word that means "I love you" in dinosaur, but also is this small library to implement a lot
+          of features to the PHP language.</p>
+        <p>Rawr is an open-source project meant to make the PHP language a little better, as much as it has a lot of
+          little failures that sometimes let me angry. The project started after a big criticism to PHP and its
+          inconsistence in function names. To solve a big part of the problems, we got Rawr. It implements and
+          simulates static-typing, functional programming, a more pure object-oriented approach and the concept
+          of modules, aiming a more pure way to program and taking into account that so many developers do several
+          mistakes and workarounds with PHP. Rawr is built to be type-safe and for applications that require applications
+          to not crash.
+        </p>
+
+        <h3><span class="glyphicon glyphicon-plus"></span> Static typing</h3>
+        <p>Different from Java where primitives aren't objects, here each type is literally a class and each value
+          of a rawr-defined variable is pure object. As much as Alan Kays definition of object orientation, the objects
+          have behaviours and Rawr also allows method-chaining to make the things easier. You can also restrict function
+          parameters to specified types and existing comments over functions are parsed to assert type safety:</p>
+<pre><code class="php">$age         = Int (18);
+$ableToDrive = Lambda (
+  /** :: (Ord a) => a -> Bool */
+  function ($age) {
+    return $age -> greaterOrEq (18);
+  }
+) -> invoke ($age);
+</code></pre>
+        <p>It's also possible to use Rawr types as constraints to parameters:</p>
+<pre><code class="php">$integralSum = Lambda (function (Int $n, Int $m) {
+  return $m -> add ($n);
+});
+</code></pre>
+        <h3><span class="glyphicon glyphicon-plus"></span> Functional programming</h3>
+        <p>Rawr implements several functional concepts, as function-composition, and the rawr-defined functions have methods to work
+          with reflection:</p>
+<pre><code>$multiplyTwo = Lambda (
+  /** :: Int -> Int */
+  function (Int $n) {
+    return $n -> times (2);
+  });
+
+$multiplyThree = Lambda (
+  /** :: Int -> Int */
+  function (Int $n) {
+    return $n -> times (3);
+  });
+
+# Function composition.
+($multiplyTwo -> o ($multiplyThree)) -> invoke (Int (7)); # 42
+</code></pre>
+        <h3><span class="glyphicon glyphicon-plus"></span> More pure object orientation</h3>
+        <p>In Rawr, almost all thing is an object. The behaviours of these objects is determined according to its
+          type, e.g.: objects of <code>Str</code> class can have a side-effect behaviour called <code>putStrLn</code> to output its data
+          to screen, as much as objects of bool atoms <code>true</code> and <code>false</code> can have behaviours like <code>ifTrue</code>
+          or <code>ifFalse</code>:</p>
+<pre><code>use \Data\Num\Int;
+$oddNumTil100 = (new Collection (1, 3, '...', 100)) -> of ('Data.Num.Int')
+-> filter (function (Int $n) {
+  return $n -> greaterThan (50); # Filters all the integers greater than 100.
+})
+-> each (function (Int $n) {
+  $n -> show () -> putStrLn (); # Outputs to screen each one of them.
+});
+
+$itHappens = (Int (1) -> eq (Int (1)))
+-> ifTrue (function () {
+  Str ("Yes, they are the same.")
+  -> putStrLn ();
+})
+-> ifFalse (function () {
+  Str ("You newbie. They're different.")
+  -> putStrLn ();
+});
+</pre></code>
+        <p>You can see the section <a href="./getting-started.html">Getting Started</a> to start using Rawr!</p>
+      </div>
+    </div>
+    <div class="page-bottom col-lg-12" align="center">
+      Rawr is open-source under MIT license and was developed with <span class="glyphicon glyphicon-heart"></span> by Marcelo Camargo
+      (<a href="mailto:marcelocamargo@linuxmail.org">marcelocamargo at linuxmail period org</a>).
+    </div>
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="./styles/solarized_dark.css">
+    <script src="./highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
